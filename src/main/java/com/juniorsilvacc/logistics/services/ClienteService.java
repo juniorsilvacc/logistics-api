@@ -47,6 +47,16 @@ public class ClienteService {
 		
 		return repository.save(oldObj);
 	}
+	
+	public void delete(Long id) {
+		Cliente obj = findById(id);
+		
+		if(obj.getId() == 0) {
+			throw new ObjectNotFoundException(String.format("Cliente com id %d não encontrado", id));
+		}
+		
+		repository.delete(obj);
+	}
 
 	private void validaPorEmail(ClienteDTO objDTO) {
 		Optional<Cliente> obj = repository.findByEmail(objDTO.getEmail());

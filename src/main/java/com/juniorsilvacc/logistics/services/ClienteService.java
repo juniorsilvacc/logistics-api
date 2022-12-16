@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.juniorsilvacc.logistics.domain.dtos.ClienteDTO;
 import com.juniorsilvacc.logistics.domain.model.Cliente;
 import com.juniorsilvacc.logistics.domain.repositories.ClienteRepository;
 import com.juniorsilvacc.logistics.services.exceptions.ObjectNotFoundException;
@@ -24,6 +25,12 @@ public class ClienteService {
 		Optional<Cliente> obj = repository.findById(id); 
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(String.format("Cliente do id %d não encontrado", id)));
+	}
+
+	public Cliente create(ClienteDTO objDTO) {
+		objDTO.setId(null);
+		Cliente newObj = new Cliente(objDTO);
+		return repository.save(newObj);
 	}
 
 }

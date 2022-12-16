@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.juniorsilvacc.logistics.domain.dtos.ClienteDTO;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -22,7 +24,7 @@ public class Cliente {
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	@Column(name = "fone", nullable = false)
@@ -39,4 +41,12 @@ public class Cliente {
 		this.email = email;
 		this.telefone = telefone;
 	}	
+	
+	public Cliente(ClienteDTO obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+		this.email = obj.getEmail();
+		this.telefone = obj.getTelefone();
+	}
 }

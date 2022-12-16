@@ -26,6 +26,17 @@ public class Cliente {
 	private String email;
 	
 	@Column(name = "fone", nullable = false)
-	private String telefone;
+	private String telefone;	
 	
+	public Cliente() {
+		super();
+	}
+
+	public Cliente(Long id, String nome, String email, String telefone) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.email = email;
+		this.telefone = telefone;
+	}	
 }

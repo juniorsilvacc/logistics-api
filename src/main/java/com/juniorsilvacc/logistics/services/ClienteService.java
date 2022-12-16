@@ -36,6 +36,17 @@ public class ClienteService {
 		Cliente newObj = new Cliente(objDTO);
 		return repository.save(newObj);
 	}
+	
+	public Cliente update(Long id, ClienteDTO objDTO) {
+		objDTO.setId(id);
+		
+		Cliente oldObj = findById(id);
+		validaPorEmail(objDTO);
+		
+		oldObj = new Cliente(objDTO);
+		
+		return repository.save(oldObj);
+	}
 
 	private void validaPorEmail(ClienteDTO objDTO) {
 		Optional<Cliente> obj = repository.findByEmail(objDTO.getEmail());

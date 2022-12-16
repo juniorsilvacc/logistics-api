@@ -1,4 +1,4 @@
-package com.juniorsilvacc.logistics.domain.model;
+package com.juniorsilvacc.logistics.domain.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

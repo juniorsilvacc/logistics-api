@@ -1,6 +1,6 @@
 package com.juniorsilvacc.logistics.domain.dtos;
 
-import com.juniorsilvacc.logistics.domain.model.Cliente;
+import com.juniorsilvacc.logistics.domain.models.Cliente;
 
 public class ClienteDTO {
 	

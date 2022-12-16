@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juniorsilvacc.logistics.domain.dtos.ClienteDTO;
-import com.juniorsilvacc.logistics.domain.model.Cliente;
+import com.juniorsilvacc.logistics.domain.models.Cliente;
 import com.juniorsilvacc.logistics.domain.repositories.ClienteRepository;
+import com.juniorsilvacc.logistics.services.exceptions.DataIntegrityViolationException;
 import com.juniorsilvacc.logistics.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -24,13 +25,24 @@ public class ClienteService {
 	public Cliente findById(Long id) {
 		Optional<Cliente> obj = repository.findById(id); 
 		
-		return obj.orElseThrow(() -> new ObjectNotFoundException(String.format("Cliente do id %d não encontrado", id)));
+		return obj.orElseThrow(() -> new ObjectNotFoundException(String.format("Cliente com id %d não encontrado", id)));
 	}
 
 	public Cliente create(ClienteDTO objDTO) {
 		objDTO.setId(null);
+		
+		validaPorEmail(objDTO);
+		
 		Cliente newObj = new Cliente(objDTO);
 		return repository.save(newObj);
+	}
+
+	private void validaPorEmail(ClienteDTO objDTO) {
+		Optional<Cliente> obj = repository.findByEmail(objDTO.getEmail());
+		
+		if(obj.isPresent() && obj.get().getId() != objDTO.getId()) {
+			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema");
+		}
 	}
 
 }

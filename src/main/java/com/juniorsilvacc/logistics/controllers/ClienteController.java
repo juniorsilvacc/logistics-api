@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.juniorsilvacc.logistics.domain.dtos.ClienteDTO;
-import com.juniorsilvacc.logistics.domain.model.Cliente;
+import com.juniorsilvacc.logistics.domain.models.Cliente;
 import com.juniorsilvacc.logistics.services.ClienteService;
 
 @RestController
@@ -44,7 +44,8 @@ public class ClienteController {
 	public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO objDTO) {
 		Cliente newObj = service.create(objDTO);
 		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(newObj.getId()).toUri();
+		//Retornando para o usuário a URI de acesso
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}

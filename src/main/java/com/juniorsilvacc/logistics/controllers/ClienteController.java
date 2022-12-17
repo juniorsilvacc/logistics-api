@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,7 +45,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO objDTO) {
+	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO objDTO) {
 		Cliente newObj = service.create(objDTO);
 		
 		//Retornando para o usuário a URI de acesso
@@ -53,14 +55,14 @@ public class ClienteController {
 	}
 	
 	@PutMapping(value = "/{id}")	
-	public ResponseEntity<ClienteDTO> update(@PathVariable Long id, @RequestBody ClienteDTO objDTO) {
+	public ResponseEntity<ClienteDTO> update(@Valid @PathVariable Long id, @RequestBody ClienteDTO objDTO) {
 		Cliente obj = service.update(id, objDTO);
 		
 		return ResponseEntity.ok().body(new ClienteDTO(obj));
 	}
 	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<ClienteDTO> delete(@PathVariable Long id) {
+	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		 service.delete(id);
 		 
 		 return ResponseEntity.noContent().build();

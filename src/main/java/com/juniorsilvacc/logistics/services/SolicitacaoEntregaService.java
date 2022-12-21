@@ -1,6 +1,7 @@
 package com.juniorsilvacc.logistics.services;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.juniorsilvacc.logistics.domain.models.Cliente;
 import com.juniorsilvacc.logistics.domain.models.Entrega;
-import com.juniorsilvacc.logistics.domain.models.StatusEntrega;
+import com.juniorsilvacc.logistics.domain.models.enums.StatusEntrega;
 import com.juniorsilvacc.logistics.domain.repositories.ClienteRepository;
 import com.juniorsilvacc.logistics.domain.repositories.EntregaRepository;
 import com.juniorsilvacc.logistics.services.exceptions.DataIntegrityViolationException;
@@ -25,10 +26,14 @@ public class SolicitacaoEntregaService {
 	public Entrega request (Entrega entrega) {
 		buscaCliente(entrega);
 		
-		entrega.setStatus(StatusEntrega.PENDENTE);
+		entrega.setStatusEntrega(StatusEntrega.PENDENTE);
 		entrega.setDataPedido(LocalDateTime.now());
 		
 		return entregaRepository.save(entrega);
+	}
+	
+	public List<Entrega> findAll() {
+		return entregaRepository.findAll();
 	}
 	
 	private void buscaCliente(Entrega entrega) {
@@ -39,5 +44,7 @@ public class SolicitacaoEntregaService {
 			throw new DataIntegrityViolationException(String.format("Cliente com id %d não encontrado", clienteId));
 		}
 	}
+
+	
 
 }

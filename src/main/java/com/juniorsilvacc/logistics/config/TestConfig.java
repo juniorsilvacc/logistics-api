@@ -20,12 +20,11 @@ public class TestConfig implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 	
-		Cliente cliente1 = new Cliente(null, "Junior", "junior@hotmail.com", "83988992233");
-		Cliente cliente2 = new Cliente(null, "José", "jose@hotmail.com", "83977883322");
-		Cliente cliente3 = new Cliente(null, "Davi", "davi@hotmail.com", "83999883322");
+		Cliente c1 = new Cliente(null, "Junior", "junior@hotmail.com", "83988992233");
+		Cliente c2 = new Cliente(null, "José", "jose@hotmail.com", "83977883322");
+		Cliente c3 = new Cliente(null, "Davi", "davi@hotmail.com", "83999883322");
 		
-		
-		clienteRepository.saveAll(Arrays.asList(cliente1, cliente2, cliente3));
+		clienteRepository.saveAll(Arrays.asList(c1, c2, c3));
 	}
 
 }

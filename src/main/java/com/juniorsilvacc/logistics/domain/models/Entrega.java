@@ -1,7 +1,7 @@
 package com.juniorsilvacc.logistics.domain.models;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -30,27 +30,28 @@ public class Entrega {
 	
 	private BigDecimal taxa;
 	
+
 	@JsonProperty(access = Access.READ_ONLY)
-	private LocalDateTime dataPedido;
+	private OffsetDateTime dataPedido;
 	
 	@JsonProperty(access = Access.READ_ONLY)
-	private LocalDateTime finalizacao;
+	private OffsetDateTime finalizacao;
 	
 	@JsonProperty(access = Access.READ_ONLY) 
 	private Integer statusEntrega;
-	
-	@Embedded
-	private Destinatario destinatario;
-	
+	 
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
+	
+	@Embedded
+	private Destinatario destinatario;
 	
 	public Entrega() {
 	
 	}
 	
-	public Entrega(Long id, BigDecimal taxa, LocalDateTime dataPedido, LocalDateTime finalizacao,
+	public Entrega(Long id, BigDecimal taxa, OffsetDateTime dataPedido, OffsetDateTime finalizacao,
 			StatusEntrega statusEntrega, Destinatario destinatario, Cliente cliente) {
 		super();
 		this.id = id;

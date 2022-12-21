@@ -1,6 +1,6 @@
 package com.juniorsilvacc.logistics.services;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class SolicitacaoEntregaService {
 		buscaCliente(entrega);
 		
 		entrega.setStatusEntrega(StatusEntrega.PENDENTE);
-		entrega.setDataPedido(LocalDateTime.now());
+		entrega.setDataPedido(OffsetDateTime.now());
 		
 		return entregaRepository.save(entrega);
 	}

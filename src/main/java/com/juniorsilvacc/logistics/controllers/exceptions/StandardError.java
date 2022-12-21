@@ -1,5 +1,10 @@
 package com.juniorsilvacc.logistics.controllers.exceptions;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class StandardError {
 	
 	private Long timesamp;
@@ -18,46 +23,6 @@ public class StandardError {
 		this.status = status;
 		this.error = error;
 		this.messager = messager;
-		this.path = path;
-	}
-
-	public Long getTimesamp() {
-		return timesamp;
-	}
-
-	public void setTimesamp(Long timesamp) {
-		this.timesamp = timesamp;
-	}
-
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
-	}
-
-	public String getMessager() {
-		return messager;
-	}
-
-	public void setMessager(String messager) {
-		this.messager = messager;
-	}
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
 		this.path = path;
 	}
 

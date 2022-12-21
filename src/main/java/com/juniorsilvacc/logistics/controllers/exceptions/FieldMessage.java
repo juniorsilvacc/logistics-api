@@ -1,5 +1,10 @@
 package com.juniorsilvacc.logistics.controllers.exceptions;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class FieldMessage {
 	
 	private String fieldName;
@@ -16,20 +21,4 @@ public class FieldMessage {
 		this.message = message;
 	}
 	
-	public String getFieldName() {
-		return fieldName;
-	}
-	
-	public void setFieldName(String fieldName) {
-		this.fieldName = fieldName;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-	
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
 }

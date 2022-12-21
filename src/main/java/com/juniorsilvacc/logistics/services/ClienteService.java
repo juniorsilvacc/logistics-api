@@ -23,45 +23,45 @@ public class ClienteService {
 	}
 
 	public Cliente findById(Long id) {
-		Optional<Cliente> obj = repository.findById(id); 
+		Optional<Cliente> cliente = repository.findById(id); 
 		
-		return obj.orElseThrow(() -> new ObjectNotFoundException(String.format("Cliente com id %d não encontrado", id)));
+		return cliente.orElseThrow(() -> new ObjectNotFoundException(String.format("Cliente com id %d não encontrado", id)));
 	}
 
-	public Cliente create(ClienteDTO objDTO) {
-		objDTO.setId(null);
+	public Cliente create(ClienteDTO cliente) {
+		cliente.setId(null);
 		
-		validaPorEmail(objDTO);
+		validaPorEmail(cliente);
 		
-		Cliente newObj = new Cliente(objDTO);
-		return repository.save(newObj);
+		Cliente newCliente = new Cliente(cliente);
+		return repository.save(newCliente);
 	}
 	
-	public Cliente update(Long id, ClienteDTO objDTO) {
-		objDTO.setId(id);
+	public Cliente update(Long id, ClienteDTO cliente) {
+		cliente.setId(id);
 		
-		Cliente oldObj = findById(id);
-		validaPorEmail(objDTO);
+		Cliente oldCliente = findById(id);
+		validaPorEmail(cliente);
 		
-		oldObj = new Cliente(objDTO);
+		oldCliente = new Cliente(cliente);
 		
-		return repository.save(oldObj);
+		return repository.save(oldCliente);
 	}
 	
 	public void delete(Long id) {
-		Cliente obj = findById(id);
+		Cliente cliente = findById(id);
 		
-		if(obj.getId() == 0) {
+		if(cliente.getId() == 0) {
 			throw new ObjectNotFoundException(String.format("Cliente com id %d não encontrado", id));
 		}
-		
-		repository.delete(obj);
+		 
+		repository.delete(cliente);
 	}
 
-	private void validaPorEmail(ClienteDTO objDTO) {
-		Optional<Cliente> obj = repository.findByEmail(objDTO.getEmail());
+	private void validaPorEmail(ClienteDTO cliente) {
+		Optional<Cliente> obj = repository.findByEmail(cliente.getEmail());
 		
-		if(obj.isPresent() && obj.get().getId() != objDTO.getId()) {
+		if(obj.isPresent() && obj.get().getId() != cliente.getId()) {
 			throw new DataIntegrityViolationException("E-mail já cadastrado no sistema");
 		}
 	}

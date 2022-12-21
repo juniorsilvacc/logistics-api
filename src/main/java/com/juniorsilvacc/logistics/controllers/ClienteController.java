@@ -45,8 +45,8 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO objDTO) {
-		Cliente newObj = service.create(objDTO);
+	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO cliente) {
+		Cliente newObj = service.create(cliente);
 		
 		//Retornando para o usuário a URI de acesso
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
@@ -55,8 +55,8 @@ public class ClienteController {
 	}
 	
 	@PutMapping(value = "/{id}")	
-	public ResponseEntity<ClienteDTO> update(@Valid @PathVariable Long id, @RequestBody ClienteDTO objDTO) {
-		Cliente obj = service.update(id, objDTO);
+	public ResponseEntity<ClienteDTO> update(@Valid @PathVariable Long id, @RequestBody ClienteDTO cliente) {
+		Cliente obj = service.update(id, cliente);
 		
 		return ResponseEntity.ok().body(new ClienteDTO(obj));
 	}

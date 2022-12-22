@@ -23,5 +23,5 @@ public class Destinatario {
 	
 	@Column(name = "destinatario_bairro")
 	private String bairro;
-
+	
 }

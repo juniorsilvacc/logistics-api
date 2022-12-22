@@ -13,20 +13,20 @@ import lombok.Setter;
 @Setter
 public class ClienteDTO {
 	
-	protected Long id;
+	private Long id;
 	
 	@NotBlank(message = "Campo NOME é requerido")
 	@Size(max = 60)
-	protected String nome;
+	private String nome;
 	
 	@NotBlank (message = "Campo E-MAIL é requerido")
 	@Email
 	@Size(max = 255)
-	protected String email;
+	private String email;
 	
 	@NotBlank(message = "Campo TELEFONE é requerido")
 	@Size(max = 20)
-	protected String telefone;
+	private String telefone;
 	
 	public ClienteDTO() {
 		super();

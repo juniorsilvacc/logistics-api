@@ -45,7 +45,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO cliente) {
+	public ResponseEntity<ClienteDTO> create(@RequestBody ClienteDTO cliente) {
 		Cliente newObj = service.create(cliente);
 		
 		//Retornando para o usuário a URI de acesso

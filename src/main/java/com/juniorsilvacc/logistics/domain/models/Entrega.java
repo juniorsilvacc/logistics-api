@@ -2,6 +2,8 @@ package com.juniorsilvacc.logistics.domain.models;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -10,7 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.juniorsilvacc.logistics.domain.models.enums.StatusEntrega;
@@ -30,7 +37,6 @@ public class Entrega {
 	
 	private BigDecimal taxa;
 	
-
 	@JsonProperty(access = Access.READ_ONLY)
 	private OffsetDateTime dataPedido;
 	
@@ -44,11 +50,16 @@ public class Entrega {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "entrega")
+	@Cascade(CascadeType.ALL)
+	private List<Ocorrencia> ocorrencias = new ArrayList<>();
+	
 	@Embedded
 	private Destinatario destinatario;
 	
 	public Entrega() {
-	
+		super();
 	}
 	
 	public Entrega(Long id, BigDecimal taxa, OffsetDateTime dataPedido, OffsetDateTime finalizacao,
@@ -62,7 +73,7 @@ public class Entrega {
 		this.destinatario = destinatario;
 		this.cliente = cliente;
 	}
-
+	
 	public StatusEntrega getStatusEntrega() {
 		return StatusEntrega.valueOf(statusEntrega);
 	}
@@ -71,6 +82,17 @@ public class Entrega {
 		if(statusEntrega != null) {
 			this.statusEntrega = statusEntrega.getCodigo();
 		}
+	}
+
+	public Ocorrencia addOcorrenciaDescricao(String descricao) {
+		Ocorrencia ocorrencia = new Ocorrencia();
+		ocorrencia.setDescricao(descricao);
+		ocorrencia.setDataRegistro(OffsetDateTime.now());
+		ocorrencia.setEntrega(this);
+		
+		this.getOcorrencias().add(ocorrencia);
+		
+		return ocorrencia;
 	}
 
 }

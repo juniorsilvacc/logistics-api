@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.juniorsilvacc.logistics.domain.dtos.EntregaDTO;
 import com.juniorsilvacc.logistics.domain.models.Cliente;
 import com.juniorsilvacc.logistics.domain.models.Entrega;
 import com.juniorsilvacc.logistics.domain.models.enums.StatusEntrega;
@@ -24,13 +25,15 @@ public class SolicitacaoEntregaService {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
-	public Entrega request (Entrega entrega) {
+	public Entrega request (EntregaDTO entrega) {
+		entrega.setId(null);
 		buscaCliente(entrega);
 		
 		entrega.setStatusEntrega(StatusEntrega.PENDENTE);
 		entrega.setDataPedido(OffsetDateTime.now());
 		
-		return entregaRepository.save(entrega);
+		Entrega newEntrega = new Entrega(entrega);
+		return entregaRepository.save(newEntrega);
 	}
 	
 	public List<Entrega> findAll() {
@@ -43,7 +46,7 @@ public class SolicitacaoEntregaService {
 		return entrega.orElseThrow(() -> new ObjectNotFoundException(String.format("Entrega com id %d não encontrado", id)));
 	}
 	
-	private void buscaCliente(Entrega entrega) {
+	private void buscaCliente(EntregaDTO entrega) {
 		Long clienteId = entrega.getCliente().getId();
 		Optional<Cliente> cliente = clienteRepository.findById(clienteId);
 		

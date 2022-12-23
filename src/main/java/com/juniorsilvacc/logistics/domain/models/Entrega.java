@@ -20,7 +20,9 @@ import org.hibernate.annotations.CascadeType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.juniorsilvacc.logistics.domain.dtos.EntregaDTO;
 import com.juniorsilvacc.logistics.domain.models.enums.StatusEntrega;
+import com.juniorsilvacc.logistics.services.exceptions.DataIntegrityViolationException;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -74,6 +76,16 @@ public class Entrega {
 		this.cliente = cliente;
 	}
 	
+	public Entrega(EntregaDTO obj) {
+		this.id = obj.getId();
+		this.cliente = obj.getCliente();
+		this.taxa = obj.getTaxa();
+		this.destinatario = obj.getDestinatario();
+		setStatusEntrega(obj.getStatusEntrega());
+		this.dataPedido = obj.getDataPedido();
+		this.finalizacao = obj.getFinalizacao();
+	}
+	
 	public StatusEntrega getStatusEntrega() {
 		return StatusEntrega.valueOf(statusEntrega);
 	}
@@ -93,6 +105,15 @@ public class Entrega {
 		this.getOcorrencias().add(ocorrencia);
 		
 		return ocorrencia;
+	}
+
+	public void finalizar() {
+		if(!getStatusEntrega().equals(StatusEntrega.PENDENTE)) {
+			throw new DataIntegrityViolationException("Entrega não pode ser finalizada");
+		}	
+		
+		setStatusEntrega(StatusEntrega.FINALIZADA);
+		setFinalizacao(OffsetDateTime.now());
 	}
 
 }

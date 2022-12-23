@@ -15,8 +15,8 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 public class Ocorrencia {
 	
@@ -45,5 +45,5 @@ public class Ocorrencia {
 		this.descricao = descricao;
 		this.dataRegistro = dataRegistro;
 	}
-
+	
 }

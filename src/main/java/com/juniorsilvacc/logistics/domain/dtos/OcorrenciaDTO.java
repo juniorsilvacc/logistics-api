@@ -23,11 +23,9 @@ public class OcorrenciaDTO {
 	private OffsetDateTime dataRegistro;
 
 	public OcorrenciaDTO() {
-		super();
 	}
 
 	public OcorrenciaDTO(Ocorrencia obj) {
-		super();
 		this.id = obj.getId();
 		this.descricao = obj.getDescricao();
 		this.dataRegistro = obj.getDataRegistro();

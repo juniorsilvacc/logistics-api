@@ -54,7 +54,7 @@ public class ClienteService {
 		Cliente cliente = findById(id);
 		
 		if(cliente.getId() == 0) {
-			throw new ObjectNotFoundException(String.format("Cliente com id %d não encontrado", id));
+			throw new ObjectNotFoundException(String.format("Destinatário com id %d não encontrado", id));
 		}
 		 
 		clienteRepository.delete(cliente);

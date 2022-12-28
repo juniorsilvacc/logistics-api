@@ -33,7 +33,7 @@ public class OcorrenciaController {
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newOcorrencia.getId()).toUri();
 		 
-		return ResponseEntity.created(uri).body(new OcorrenciaDTO(newOcorrencia));
+		return ResponseEntity.created(uri).build();
 	} 
 	
 	@GetMapping

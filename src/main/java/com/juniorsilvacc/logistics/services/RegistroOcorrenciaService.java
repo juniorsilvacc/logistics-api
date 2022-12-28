@@ -21,7 +21,7 @@ public class RegistroOcorrenciaService {
 	
 	@Transactional
 	public Ocorrencia register(String descricao, Long id) {
-		Entrega entrega = buscaEntregaService.buscar(id);
+		Entrega entrega = buscaEntregaService.buscarEntrega(id);
 				
 		
 		return entrega.addOcorrenciaDescricao(descricao);

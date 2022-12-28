@@ -20,7 +20,7 @@ public class BuscarService {
 	@Autowired
 	private DestinatarioRepository destinatarioRepository;
 	
-	public Entrega buscar(Long id) {
+	public Entrega buscarEntrega(Long id) {
 		return entregaRepository.findById(id)
 				.orElseThrow(() -> new ObjectNotFoundException(String.format("Entrega com id %d não encontrado", id)));
 	}

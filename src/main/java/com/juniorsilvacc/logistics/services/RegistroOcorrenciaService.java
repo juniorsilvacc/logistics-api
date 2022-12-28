@@ -17,7 +17,7 @@ public class RegistroOcorrenciaService {
 	private OcorrenciaRepository ocorrenciaRepository;
 	
 	@Autowired
-	private BuscaEntregaService buscaEntregaService;
+	private BuscarService buscaEntregaService;
 	
 	@Transactional
 	public Ocorrencia register(String descricao, Long id) {

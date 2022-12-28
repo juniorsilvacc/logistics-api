@@ -12,11 +12,18 @@ public class DestinatarioEntregaService {
 	
 	@Autowired
 	private DestinatarioRepository destinatarioRepository;
+	
+	@Autowired
+	private BuscarService buscarService;
 
 	public Destinatario create(DestinatarioDTO destinatario) {
 		Destinatario newDestinatario = new Destinatario(destinatario);
 		
 		return destinatarioRepository.save(newDestinatario);
+	}
+
+	public Destinatario findById(Long id) {
+		return buscarService.buscarDestinatario(id);
 	}
 
 }

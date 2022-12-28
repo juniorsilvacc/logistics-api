@@ -37,7 +37,7 @@ public class EntregaController {
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newRequest.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(new EntregaDTO(newRequest));
+		return ResponseEntity.created(uri).build();
 	}
 	
 	@GetMapping

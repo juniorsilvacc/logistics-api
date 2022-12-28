@@ -39,8 +39,9 @@ public class DestinatarioDTO {
 		super();
 	}
 
-	public DestinatarioDTO(String nome, String logradouro, String complemento, String numero, String bairro) {
+	public DestinatarioDTO(Long id, String nome, String logradouro, String complemento, String numero, String bairro) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.logradouro = logradouro;
 		this.complemento = complemento;
@@ -50,6 +51,7 @@ public class DestinatarioDTO {
 	
 	public DestinatarioDTO(Destinatario obj) {
 		super();
+		this.id = obj.getId();
 		this.nome = obj.getNome();
 		this.logradouro = obj.getLogradouro();
 		this.complemento = obj.getComplemento();

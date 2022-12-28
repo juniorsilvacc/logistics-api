@@ -14,7 +14,7 @@ public class FinalizacaoEntregaService {
 	private EntregaRepository entregaRepository;
 	
 	@Autowired
-	private BuscaEntregaService buscaEntregaService;
+	private BuscarService buscaEntregaService;
 	
 	@Transactional
 	public void finalize (Long id) {

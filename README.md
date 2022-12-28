@@ -6,8 +6,7 @@ Este projeto foi desenvolvido para a logística de entrega de produtos/mercadori
 
 ## As seguintes tecnologias foram utilizadas neste projeto:
 
-* Java SE 11
-* Java EE
+* Java EE 11
 * Spring Boot Framework (version 2.7.6)
 * SQL
 * JPA
@@ -24,9 +23,9 @@ Este projeto foi desenvolvido para a logística de entrega de produtos/mercadori
 
 ## Autor
 
-Cícero J. S. Júnior  
-https://www.linkedin.com/in/juniiorsilva-fullstack/
-juniorsilvafullstack@gmail.com 
+<p>Cícero J. S. Júnior <br>
+https://www.linkedin.com/in/juniiorsilva-fullstack/ <br>
+juniorsilvafullstack@gmail.com </p>
 
 ## Camadas Lógicas
 

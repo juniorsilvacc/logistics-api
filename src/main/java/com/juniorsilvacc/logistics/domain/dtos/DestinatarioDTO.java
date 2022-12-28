@@ -1,6 +1,7 @@
 package com.juniorsilvacc.logistics.domain.dtos;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.juniorsilvacc.logistics.domain.models.Destinatario;
 
@@ -11,20 +12,28 @@ import lombok.Setter;
 @Setter
 public class DestinatarioDTO {
 	
-	@NotEmpty(message = "Campo NOME é requerido")
+	private Long id;
+	
+	@NotBlank(message = "Campo NOME é requerido")
+	@Size(max = 60)
 	private String nome;
 	
-	@NotEmpty(message = "Campo LOGRADOURO é requerido")
+	@NotBlank(message = "Campo LOGRADOURO é requerido")
+	@Size(max = 60)
 	private String logradouro;
 	
-	@NotEmpty(message = "Campo COMPLEMENTO é requerido")
+	@NotBlank(message = "Campo COMPLEMENTO é requerido")
+	@Size(max = 60)
 	private String complemento;
 	
-	@NotEmpty(message = "Campo NUMERO é requerido")
+	@NotBlank(message = "Campo NÚMERO é requerido")
+	@Size(max = 10)
 	private String numero;
 	
-	@NotEmpty(message = "Campo BAIRRO é requerido")
+	@NotBlank(message = "Campo BAIRRO é requerido")
+	@Size(max = 30)
 	private String bairro;
+	
 	
 	public DestinatarioDTO() {
 		super();

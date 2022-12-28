@@ -48,10 +48,10 @@ public class EntregaController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Entrega> findById(@PathVariable Long id) {
+	public ResponseEntity<EntregaDTO> findById(@PathVariable Long id) {
 		Entrega obj = service.findById(id);
 		
-		return ResponseEntity.ok().body(obj);
+		return ResponseEntity.ok().body(new EntregaDTO(obj));
 	}
 	
 	@PutMapping(value = "/{id}/finalizacao")

@@ -36,7 +36,7 @@ public class EntregaDTO {
 	}
 	
 	public EntregaDTO(Long id, Cliente cliente, Destinatario destinatario, BigDecimal taxa, StatusEntrega statusEntrega,
-			OffsetDateTime dataPedido, OffsetDateTime finalizacao) {
+			OffsetDateTime dataPedido, OffsetDateTime finalizacao ) {
 		super();
 		this.id = id;
 		this.cliente = cliente;
@@ -50,8 +50,8 @@ public class EntregaDTO {
 	public EntregaDTO(Entrega obj) {
 		this.id = obj.getId();
 		this.cliente = obj.getCliente();
-		this.taxa = obj.getTaxa();
 		this.destinatario = obj.getDestinatario();
+		this.taxa = obj.getTaxa();
 		this.statusEntrega = obj.getStatusEntrega();
 		this.dataPedido = obj.getDataPedido();
 		this.finalizacao = obj.getFinalizacao();

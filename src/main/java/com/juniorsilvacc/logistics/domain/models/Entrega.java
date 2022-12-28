@@ -5,7 +5,6 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -57,7 +57,8 @@ public class Entrega {
 	@Cascade(CascadeType.ALL)
 	private List<Ocorrencia> ocorrencias = new ArrayList<>();
 	
-	@Embedded
+	@OneToOne
+	@JoinColumn(name = "destinatario_id")
 	private Destinatario destinatario;
 	
 	public Entrega() {
@@ -65,25 +66,25 @@ public class Entrega {
 	}
 	
 	public Entrega(Long id, BigDecimal taxa, OffsetDateTime dataPedido, OffsetDateTime finalizacao,
-			StatusEntrega statusEntrega, Destinatario destinatario, Cliente cliente) {
+			StatusEntrega statusEntrega, Cliente cliente, Destinatario destinatario) {
 		super();
 		this.id = id;
 		this.taxa = taxa;
 		this.dataPedido = dataPedido;
 		this.finalizacao = finalizacao;
 		setStatusEntrega(statusEntrega);
-		this.destinatario = destinatario;
 		this.cliente = cliente;
+		this.destinatario = destinatario;
 	}
 	
 	public Entrega(EntregaDTO obj) {
 		this.id = obj.getId();
-		this.cliente = obj.getCliente();
 		this.taxa = obj.getTaxa();
-		this.destinatario = obj.getDestinatario();
-		setStatusEntrega(obj.getStatusEntrega());
 		this.dataPedido = obj.getDataPedido();
 		this.finalizacao = obj.getFinalizacao();
+		setStatusEntrega(obj.getStatusEntrega());
+		this.cliente = obj.getCliente();
+		this.destinatario = obj.getDestinatario();
 	}
 	
 	public StatusEntrega getStatusEntrega() {

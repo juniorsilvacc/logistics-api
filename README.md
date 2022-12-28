@@ -30,8 +30,14 @@ juniorsilvafullstack@gmail.com
 
 ## Camadas Lógicas
 
-![Captura de tela 2022-12-23 153431](https://user-images.githubusercontent.com/43589505/209392575-8d2ac4c4-ce12-440c-8c84-b573a865bc21.png)
+![3](https://user-images.githubusercontent.com/43589505/209748660-0650deb2-6733-4dff-80c8-5fead81581a0.png)
 
-## Requisições no Postman
+## Principais Requisições no Postman
 
-![Captura de tela 2022-12-23 154250](https://user-images.githubusercontent.com/43589505/209393370-2aa8c2c1-6bbf-43d3-a5a5-a24814130044.png)
+### Enviar Pedido
+#### Criação Cliente/Criação Destinatário/Envio de Pedido - Enumeração "Pendente" com campo finalização DATE - Null
+![1](https://user-images.githubusercontent.com/43589505/209747988-03c88dcc-f185-4015-92be-10286864fa97.png)
+
+### Finalizar Pedido
+#### Enumeração "Finalizada" com campo de finalização DATE - preenchido
+![2](https://user-images.githubusercontent.com/43589505/209747981-1004969b-81ca-43bf-9b58-3a86e1e16b7f.png)
